@@ -28,7 +28,7 @@ router.get('/getuser', (req, res) => {
     });
 });
 
-// insert new user route
+// insert new user route (note: pw should already be hashed at this point)
 router.post('/insertuser', (req, res) => {
 
     let user = req.query.name;
@@ -41,7 +41,7 @@ router.post('/insertuser', (req, res) => {
     }
 
     // check user does not already exist
-    users.getUser(req.query.name, (response) => {
+    users.getUser(user, (response) => {
         if (response.length > 0) {
             res.status(500).send('ERROR: User already exists.');
         } else {
@@ -51,14 +51,37 @@ router.post('/insertuser', (req, res) => {
     });
 });
 
-// update user route
-router.post('/userupdate', (req, res) => {
-    console.log('User updated');
+// update user route (note: pw should already be hashed at this point)
+router.post('/updateuser', (req, res) => {
+    
+    let user = req.query.name;
+    let pw = req.query.pw;
+
+    // check if user exists
+    users.getUser(user, (response) => {
+        if (response.length > 0) {
+            users.updateUser(user, pw);
+            res.status(200).send('User successfully updated.');
+        } else {
+            res.status(500).send('ERROR: User does not exist.');
+        }
+    });
 });
 
 // delete user route
 router.post('/deleteuser', (req, res) => {
-    console.log('User deleted')
+    
+    let user = req.query.name;
+
+    // check if user exists
+    users.getUser(user, (response) => {
+        if (response.length > 0) {
+            users.deleteUser(user);
+            res.status(200).send('User successfully deleted.');
+        } else {
+            res.status(500).send('ERROR: User does not exist.');
+        }
+    });
 });
 
 module.exports = router;

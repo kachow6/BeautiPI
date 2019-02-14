@@ -25,7 +25,7 @@ module.exports = {
 
     // retrieve user
     getUser: (userName, callback) => {
-        let search = { username: userName }
+        let search = { username: userName };
         db.collection(COLLECTION).find(search).toArray((err, result) => {
             if (err) throw err;
             callback(result);
@@ -34,6 +34,26 @@ module.exports = {
 
     // insert new user
     insertUser: (user, pw) => {
-        db.collection(COLLECTION).insertOne({ username: user, password: pw });
-    }
+        let newUser = { username: user, password: pw };
+        db.collection(COLLECTION).insertOne(newUser, (err, result) => {
+            if (err) throw err;
+        });
+    },
+
+    // update user
+    updateUser: (userName, pw) => {
+        let search = { username: userName };
+        let values = { $set: { password: pw } }; 
+        db.collection(COLLECTION).updateOne(search, values, (err, result) => {
+            if (err) throw err;
+        });
+    },
+
+    // delete user
+    deleteUser: (userName) => {
+        let search = { username: userName };
+        db.collection(COLLECTION).deleteOne(search, (err, result) => {
+            if (err) throw err;
+        });
+    } 
 };
