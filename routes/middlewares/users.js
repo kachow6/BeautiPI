@@ -34,14 +34,21 @@ router.post('/insertuser', (req, res) => {
     let user = req.query.name;
     let pw = req.query.pw;
 
-    // check user does not already exist
-
+    // check user fields
     if (user == null || pw == null || user == "" || pw == "") {
         res.status(500).send('ERROR: Unable to insert new user.');
-    } else {
-        users.insertUser(user, pw);
-        res.status(200).send('User successfully inserted.');
+        return;
     }
+
+    // check user does not already exist
+    users.getUser(req.query.name, (response) => {
+        if (response.length > 0) {
+            res.status(500).send('ERROR: User already exists.');
+        } else {
+            users.insertUser(user, pw);
+            res.status(200).send('User successfully inserted.');
+        }
+    });
 });
 
 // update user route
