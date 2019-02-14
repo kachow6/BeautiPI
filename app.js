@@ -1,9 +1,11 @@
-let http = require('http');
+let express = require('express');
+let app     = express();
 
-let server = http.createServer(function(request, response) {
-    response.writeHead(200, {'Content-Type': 'text/html'});
-    response.end();
-});
+/* list of middleware */
+let users = require('./routes/middlewares/users');
 
-server.listen(80);
+/* register middleware to API */
+app.use('/users', users);
+
 console.log('listening...');
+app.listen(8888);
