@@ -1,11 +1,15 @@
-let express = require('express');
-let app     = express();
+const express   = require('express');
+const dotenv    = require('dotenv');
+const app       = express();
+
+/* configure env variables */
+dotenv.config();
 
 /* list of middleware */
-let users = require('./routes/middlewares/users');
+const users = require('./routes/middlewares/users');
 
 /* register middleware to API */
 app.use('/users', users);
 
 console.log('listening...');
-app.listen(8888);
+app.listen(process.env.PORT);

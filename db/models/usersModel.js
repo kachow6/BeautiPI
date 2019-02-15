@@ -1,5 +1,5 @@
-let mongo   = require('mongodb').MongoClient;
-const url   = "mongodb://localhost:27017/";
+const mongo     = require('mongodb').MongoClient;
+const config    = require('../../config/database.js')
 
 // db constants
 const DB = 'test';
@@ -8,7 +8,7 @@ const COLLECTION = 'users';
 let db;
 
 // establish db connection
-mongo.connect(url, { useNewUrlParser: true }, (err, client) => {
+mongo.connect(config.url, { useNewUrlParser: true }, (err, client) => {
     if (err) throw err;
     db = client.db(DB);
 });

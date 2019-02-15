@@ -1,14 +1,14 @@
-let express = require('express');
-let router  = express.Router();
+const express = require('express');
+const router  = express.Router();
 
 // users model
-let users = require('../../db/models/usersModel');
+const users = require('../../db/models/usersModel');
 
 // middleware that is specific to this router
-router.use(function timeLog(req, res, next) {
-    console.log('Time: ', Date.now());
-    next();
-});
+// router.use(function timeLog(req, res, next) {
+//     console.log('Time: ', Date.now());
+//     next();
+// });
 
 // default users route that retrieves all users
 router.get('/', (req, res) => {
