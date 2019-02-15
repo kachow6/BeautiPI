@@ -10,9 +10,9 @@ services:
       - 8888:8888
       - 9229:9229
     command: node --inspect app.js
-    links:
-      - mongo
-  mongo:
-    image: mongo
-    ports:
-    - 27017:27017
+  #   links:
+  #     - mongo
+  # mongo:
+  #   image: mongo
+  #   ports:
+  #   - 27017:27017

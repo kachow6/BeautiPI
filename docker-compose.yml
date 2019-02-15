@@ -4,13 +4,20 @@ services:
   beautipi:
     image: beautipi
     build: .
+    env_file:
+      - .env
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
+      WAIT_HOSTS: mongo:27017
     ports:
-      - 8888:8888
-    links:
-      - mongo
+      - ${PORT}:${PORT}
   mongo:
     image: mongo
-    ports:
-      - 27017:27017
+    env_file:
+      - .env
+    volumes:
+      - ".${MONGO_TEST_DATA_DIR}:${MONGO_TEST_DATA_DIR}"
+    expose:
+      - 27017
+    command: "mongod --smallfiles --logpath=${MONGO_LOG_FILE}"
+
