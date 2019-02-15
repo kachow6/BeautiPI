@@ -1,0 +1,29 @@
+{
+  "name": "beautipi",
+  "version": "1.0.0",
+  "description": "NodeJS API for beauty application",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "sudo node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kachow6/BeautiPI.git"
+  },
+  "keywords": [
+    "beautipi"
+  ],
+  "author": "kevin chow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kachow6/BeautiPI/issues"
+  },
+  "homepage": "https://github.com/kachow6/BeautiPI#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongodb": "^3.1.13"
+  }
+}

@@ -1,4 +1,0 @@
-npm packages:
-node
-mongodb
-express
