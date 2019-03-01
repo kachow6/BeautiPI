@@ -1,16 +1,20 @@
-const express   = require('express');
-const dotenv    = require('dotenv');
-const mongo     = require('mongodb').MongoClient;
-const dbconfig  = require('./config/database.js')
-const app       = express();
+const express       = require('express');
+const dotenv        = require('dotenv');
+const bodyParser    = require('body-parser');
+const mongo         = require('mongodb').MongoClient;
+const dbconfig      = require('./config/database.js')
+const app           = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /* configure env variables */
 dotenv.config();
 
 const port = process.env.PORT || 80;
 
-/* list of middleware */
-const users = require('./routes/middlewares/user_routes');
+/* list of routes */
+const users = require('./routes/user_routes');
 
 /* register middleware to API */
 app.use('/users', users);

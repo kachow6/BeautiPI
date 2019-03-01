@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 
 // user model
-const User = require('../../db/models/User');
+const User = require('../db/models/User');
 const collection = 'users';
 
 // middleware that is specific to this router
@@ -38,8 +38,8 @@ router.get('/getuser', (req, res) => {
 // insert new user route (note: pw should already be hashed at this point)
 router.post('/insertuser', (req, res) => {
 
-    let user = req.query.name;
-    let pw = req.query.pw;
+    let user = req.body.name;
+    let pw = req.body.pw;
 
     // check user fields
     if (user == null || pw == null || user == "" || pw == "") {
@@ -70,10 +70,10 @@ router.post('/insertuser', (req, res) => {
 // update user route (note: pw should already be hashed at this point)
 router.post('/updateuser', (req, res) => {
     
-    let pw = req.query.pw;
+    let pw = req.body.pw;
 
     // check if user exists
-    let search = { username: req.query.name };
+    let search = { username: req.body.name };
 
     req.app.locals.db.collection(collection).find(search).toArray((err, result) => {
         if (err) res.status(500).send(err);
@@ -96,7 +96,7 @@ router.post('/updateuser', (req, res) => {
 router.post('/deleteuser', (req, res) => {
     
     // check if user exists
-    let search = { username: req.query.name };
+    let search = { username: req.body.name };
 
     req.app.locals.db.collection(collection).find(search).toArray((err, result) => {
         if (err) res.status(500).send(err);
