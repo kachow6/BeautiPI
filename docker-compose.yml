@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     environment:
-      NODE_ENV: development
+      NODE_ENV: development #production
       WAIT_HOSTS: mongo:27017
     ports:
       - ${PORT}:${PORT}
@@ -20,4 +20,3 @@ services:
     expose:
       - 27017
     command: "mongod --smallfiles --logpath=${MONGO_LOG_FILE}"
-

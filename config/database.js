@@ -4,7 +4,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // set database name
-const db = process.env.NODE_ENV === 'development' ? 'test' : 'database';
+let db;
+if (process.env.NODE_ENV) {
+    db = process.env.NODE_ENV === 'development' ? 'test' : 'database';
+} else {
+    db = 'test';
+}
 
 module.exports = {
     'db' : db,
