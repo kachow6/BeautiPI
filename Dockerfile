@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN npm install
 COPY . .
-EXPOSE 8888
+EXPOSE 8888 80
 CMD sudo node app.js
 
 #FROM node:10.13-alpine
