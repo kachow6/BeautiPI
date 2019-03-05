@@ -6,9 +6,9 @@ dotenv.config();
 // set database name
 let db;
 if (process.env.NODE_ENV) {
-    db = process.env.NODE_ENV === 'development' ? 'test' : 'database';
+    db = process.env.NODE_ENV === 'development' ? process.env.MONGO_TEST_DB_NAME : process.env.MONGO_PROD_DB_NAME;
 } else {
-    db = 'test';
+    db = process.env.MONGO_TEST_DB_NAME;
 }
 
 module.exports = {
