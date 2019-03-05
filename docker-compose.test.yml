@@ -1,7 +1,5 @@
 sut:
   build: .
-  env_file:
-    - .env
   environment:
     WAIT_HOSTS: mongo:27017
   ports:
