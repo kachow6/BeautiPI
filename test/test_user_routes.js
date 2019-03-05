@@ -23,7 +23,46 @@ describe('test retrieving users', function() {
         .then(function(res) {
             if (res.error) throw res.error; 
             expect(res).to.have.status(200);
-            process.exit();
-        }).catch((err) => { console.log(err); });;
+        }).catch((err) => { console.log(err); });
+    });
+
+    it('should insert new user into db', function() {
+        chai.request(app)
+        .post('/users/insertuser')
+        .send({ name: 'test', pw: '123' })
+        .then(function(res) {
+            if (res.error) throw res.error;
+            expect(res).to.have.status(200);
+        }).catch((err) => { console.log(err); });
+    });
+
+    it('should retrieve a single user', function() {
+        chai.request(app)
+        .get('/users/getuser')
+        .query({ name: 'test' })
+        .then(function(res) {
+            if (res.error) throw res.error;
+            expect(res).to.have.status(200);
+        }).catch((err) => { console.log(err); });
+    });
+
+    it('should update user in db', function() {
+        chai.request(app)
+        .post('/users/updateuser')
+        .send({ name: 'test', pw: '321' })
+        .then(function(res) {
+            if (res.error) throw res.error;
+            expect(res).to.have.status(200);
+        }).catch((err) => { console.log(err); });
+    });
+
+    it('should delete user from db', function() {
+        chai.request(app)
+        .post('/users/deleteuser')
+        .send({ name: 'test' })
+        .then(function(res) {
+            if (res.error) throw res.error;
+            expect(res).to.have.status(200);
+        }).catch((err) => { console.log(err); });
     });
 });
