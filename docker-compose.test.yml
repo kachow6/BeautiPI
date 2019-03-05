@@ -1,3 +1,12 @@
 sut:
   build: .
   command: npm test
+mongo:
+  image: mongo
+  env_file:
+      - .env
+    volumes:
+      - ".${MONGO_DATA_DIR}:${MONGO_DATA_DIR}"
+    expose:
+      - 27017
+    command: "mongod --smallfiles --logpath=${MONGO_LOG_FILE}"
