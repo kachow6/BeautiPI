@@ -13,7 +13,7 @@ if (process.env.NODE_ENV) {
 
 module.exports = {
     'db' : db,
-    'url': `mongodb+srv://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@beautipi-dev-hl414.mongodb.net/${db}?retryWrites=true&authMechanism=SCRAM-SHA-1&authSource=admin`,
+    'url': `mongodb+srv://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@beautipi-dev-hl414.mongodb.net/${db}?retryWrites=true&authMechanism=SCRAM-SHA-1`,
     'options': {
         useNewUrlParser: true,
         reconnectTries: 60,
