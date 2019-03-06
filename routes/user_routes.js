@@ -5,7 +5,6 @@ const router  = express.Router();
 const User = require('../db/models/User');
 const collection = 'users';
 
-// middleware that is specific to this router
 // router.use(function timeLog(req, res, next) {
 //     console.log('Time: ', Date.now());
 //     next();

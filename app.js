@@ -15,9 +15,11 @@ const port = process.env.PORT || 80;
 
 /* list of routes */
 const users = require('./routes/user_routes');
+const config = require('./routes/config_routes');
 
-/* register middleware to API */
+/* register API routes */
 app.use('/users', users);
+app.use('/config', config);
 
 /* establish db connection */
 mongo.connect(dbconfig.url, dbconfig.options, (err, client) => {

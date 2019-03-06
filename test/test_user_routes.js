@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 chai.use(chaiHttp);
 
-describe('test retrieving users', function() {
+describe('test mongo users collection', function() {
 
     before('connect', function() {
         return mongoose.createConnection(dbconfig.url, dbconfig.options, function(err) {
